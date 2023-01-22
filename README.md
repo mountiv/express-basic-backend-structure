@@ -3,7 +3,7 @@
 ## Guide
 
 ### Basic structure of this project
-
+```
 project
 |__ node_modules
 |__ src
@@ -28,7 +28,7 @@ project
 |__ .env
 |__ .gitignore
 |__ README.md
-
+```
 
 ### Running development server
 
