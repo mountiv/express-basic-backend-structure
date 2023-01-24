@@ -3,6 +3,7 @@
 ## Guide
 
 ### Basic structure of this project
+
 ```
 project
 |__ node_modules
@@ -25,6 +26,9 @@ project
 |   |   |__ user.router.js
 |   |   |__ post.router.js
 |   |__ index.js
+|__ test
+|   |__ user.js
+|   |__ post.js
 |__ .env
 |__ .gitignore
 |__ README.md
@@ -39,4 +43,5 @@ Execute these commands in terminal
 ### APIs
 
 ## Author
+
 © me
