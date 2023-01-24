@@ -22,8 +22,9 @@ app.get("/", function (req, res) {
   res.status(200).send("Server works!");
 });
 
+require("./routes/routes")(app);
+
 app.use("*", function (req, res) {
-  console.log(req);
   res.status(404).send("Can't found this page!");
 });
 
