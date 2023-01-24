@@ -19,7 +19,7 @@ checkUsername = async function (req, res) {
   if (!user) {
     res.status(200).send("available username");
   } else {
-    res.status(200).send("that username already taken!");
+    res.status(400).send("that username already taken!");
   }
 };
 
@@ -34,7 +34,7 @@ signup = async function (req, res) {
     await user.save();
     res.status(200).send("successfully created account");
   } catch (err) {
-    res.status(200).send(err.message);
+    res.status(500).send(err.message);
   }
 };
 
