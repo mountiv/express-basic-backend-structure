@@ -1,20 +1,9 @@
-const { Post } = require("../models");
+const express = require("express");
+const router = express.Router();
+const controller = require("../controllers/post.controller");
 
-createPost = async function (req, res) {
-  try {
-    const post = new Post({
-      title: req.body.title,
-      content: req.body.content,
-      keywords: req.body.keywords,
-      author: "me",
-    });
-    await post.save();
-    res.status(200).send("successfully saved post");
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-};
+router.post("/create", function (req, res) {
+  controller.createPost(req, res);
+});
 
-module.exports = {
-  createPost: createPost,
-};
+module.exports = router;
