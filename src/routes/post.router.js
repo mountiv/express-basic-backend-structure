@@ -6,4 +6,8 @@ router.post("/create", function (req, res) {
   controller.createPost(req, res);
 });
 
+router.get("/all", function (req, res) {
+  controller.readPosts(req, res);
+});
+
 module.exports = router;

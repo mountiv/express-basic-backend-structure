@@ -15,6 +15,19 @@ createPost = async function (req, res) {
   }
 };
 
+readPosts = async function (req, res) {
+  try {
+    const posts = await Post.find({})
+      .limit(req.query.limit)
+      .skip(req.query.offset)
+      .exec();
+    res.status(200).send(posts);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 module.exports = {
   createPost: createPost,
+  readPosts: readPosts,
 };
