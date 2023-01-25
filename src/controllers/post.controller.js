@@ -6,7 +6,7 @@ createPost = async function (req, res) {
       title: req.body.title,
       content: req.body.content,
       keywords: req.body.keywords,
-      author: "me",
+      author: req.body.username,
     });
     await post.save();
     res.status(200).send("successfully saved post");
