@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const secret = process.env.SECRET;
+const secret = process.env.SECRETKEY;
 
 checkEmail = async function (req, res) {
   const user = await User.findOne({ email: req.body.email });
