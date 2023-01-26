@@ -36,8 +36,18 @@ readPost = async function (req, res) {
   }
 };
 
+deletePost = async function (req, res) {
+  try {
+    const result = await Post.deleteOne({ _id: req.params.id });
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 module.exports = {
   createPost: createPost,
   readPosts: readPosts,
   readPost: readPost,
+  deletePost: deletePost,
 };
