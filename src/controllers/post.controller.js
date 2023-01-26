@@ -27,7 +27,17 @@ readPosts = async function (req, res) {
   }
 };
 
+readPost = readPosts = async function (req, res) {
+  try {
+    const post = await Post.findOne({ _id: req.params.id });
+    res.status(200).send(post);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 module.exports = {
   createPost: createPost,
   readPosts: readPosts,
+  readPost: readPost,
 };

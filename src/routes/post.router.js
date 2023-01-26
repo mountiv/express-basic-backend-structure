@@ -10,4 +10,8 @@ router.get("/all", function (req, res) {
   controller.readPosts(req, res);
 });
 
+router.get("/:id", function (req, res) {
+  controller.readPosts(req, res);
+});
+
 module.exports = router;
