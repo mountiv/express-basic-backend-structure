@@ -11,7 +11,7 @@ router.get("/all", function (req, res) {
 });
 
 router.get("/:id", function (req, res) {
-  controller.readPosts(req, res);
+  controller.readPost(req, res);
 });
 
 module.exports = router;
