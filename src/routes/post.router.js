@@ -14,7 +14,7 @@ router.get("/:id", function (req, res) {
   controller.readPost(req, res);
 });
 
-router.delete("/delete/:id", function (req, res) {
+router.delete("/:id", function (req, res) {
   controller.deletePost(req, res);
 });
 
