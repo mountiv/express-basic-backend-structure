@@ -22,4 +22,8 @@ router.put("/:id", function (req, res) {
   controller.updatePost(req, res);
 });
 
+router.get("/vote/:id", function (req, res) {
+  controller.votePost(req, res);
+});
+
 module.exports = router;
