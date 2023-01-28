@@ -15,4 +15,6 @@ const PostSchema = new Schema(
   { timestamps: true }
 );
 
+PostSchema.index({ title: "text", content: "text", author: "text" });
+
 module.exports = model("Post", PostSchema);

@@ -26,4 +26,8 @@ router.get("/vote/:id", function (req, res) {
   controller.votePost(req, res);
 });
 
+router.post("/search", function (req, res) {
+  controller.searchPosts(req, res);
+});
+
 module.exports = router;

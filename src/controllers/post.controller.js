@@ -79,6 +79,21 @@ votePost = async function (req, res) {
   }
 };
 
+searchPosts = async function (req, res) {
+  try {
+    // new RegExp(req.query.search, "g")
+    const posts = await Post.find({
+      $text: { $search: req.query.search },
+    })
+      .limit(req.query.limit)
+      .skip(req.query.offset)
+      .exec();
+    res.status(200).send(posts);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 module.exports = {
   createPost: createPost,
   readPosts: readPosts,
@@ -86,4 +101,5 @@ module.exports = {
   deletePost: deletePost,
   updatePost: updatePost,
   votePost: votePost,
+  searchPosts: searchPosts,
 };
