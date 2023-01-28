@@ -45,9 +45,20 @@ deletePost = async function (req, res) {
   }
 };
 
+updatePost = async function (req, res) {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, req.body);
+    const updatedPost = await Post.findById(req.params.id);
+    res.status(200).send(updatedPost);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 module.exports = {
   createPost: createPost,
   readPosts: readPosts,
   readPost: readPost,
   deletePost: deletePost,
+  updatePost: updatePost,
 };

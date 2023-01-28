@@ -18,4 +18,8 @@ router.delete("/:id", function (req, res) {
   controller.deletePost(req, res);
 });
 
+router.put("/:id", function (req, res) {
+  controller.updatePost(req, res);
+});
+
 module.exports = router;
