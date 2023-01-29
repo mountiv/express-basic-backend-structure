@@ -17,9 +17,9 @@ checkEmail = async function (req, res) {
 checkUsername = async function (req, res) {
   const user = await User.findOne({ username: req.body.username });
   if (!user) {
-    res.status(200).send("available username");
+    res.status(200).json({ msg: "available username" });
   } else {
-    res.status(400).send("that username already taken!");
+    res.status(400).json({ msg: "that username already taken!" });
   }
 };
 
