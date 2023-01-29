@@ -57,22 +57,32 @@ updatePost = async function (req, res) {
 
 votePost = async function (req, res) {
   try {
-    if (req.body.type == "like") {
-      await Post.findByIdAndUpdate(req.params.id, {
-        $inc: { quantity: +1, "vote.like.count": 1 },
-        $push: { "vote.like.users": req.body.username },
-      });
-      const updatedPost = await Post.findById(req.params.id);
-      res.status(200).send(updatedPost);
-    } else if (req.body.type == "dislike") {
-      await Post.findByIdAndUpdate(req.params.id, {
-        $inc: { quantity: -1, "vote.dislike.count": 1 },
-        $push: { "vote.dislike.users": req.body.username },
-      });
-      const updatedPost = await Post.findById(req.params.id);
-      res.status(200).send(updatedPost);
+    let isValidObjectId = false;
+    if (require("mongoose").Types.ObjectId.isValid(req.params.id)) {
+      if (await Post.findById(req.params.id)) {
+        isValidObjectId = true;
+      }
+    }
+    if (!isValidObjectId) {
+      res.status(404).send("You sent invalid PostId!");
     } else {
-      res.status(500).send("unknow vote type!");
+      if (req.body.type == "like") {
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: { quantity: +1, "vote.like.count": 1 },
+          $push: { "vote.like.users": req.body.username },
+        });
+        const updatedPost = await Post.findById(req.params.id);
+        res.status(200).send(updatedPost);
+      } else if (req.body.type == "dislike") {
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: { quantity: -1, "vote.dislike.count": 1 },
+          $push: { "vote.dislike.users": req.body.username },
+        });
+        const updatedPost = await Post.findById(req.params.id);
+        res.status(200).send(updatedPost);
+      } else {
+        res.status(500).send("unknow vote type!");
+      }
     }
   } catch (err) {
     res.status(500).send(err.message);
