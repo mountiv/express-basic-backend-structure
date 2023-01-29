@@ -11,6 +11,7 @@ const UserSchema = new Schema(
       type: Map,
       of: String,
     },
+    securityQueries: { type: Map, of: String },
     password: { type: String, required: true },
   },
   { timestamps: true }

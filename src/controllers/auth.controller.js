@@ -30,6 +30,7 @@ signup = async function (req, res) {
       username: req.body.username,
       password: req.body.password,
       socialMediaHandles: req.body.social,
+      securityQueries: req.body.securityQueries,
     });
     await user.save();
     res.status(200).send("successfully created account");
