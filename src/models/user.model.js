@@ -7,6 +7,19 @@ const UserSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true, unique: true },
+    name: { firstname: { type: String }, lastname: { type: String } },
+    titile: { type: String },
+    profile: { type: String },
+    address: {
+      street: { type: String },
+      city: { type: String },
+      state: { type: String },
+      country: { type: String },
+    },
+    mobile: { type: String },
+    telephone: { type: String },
+    zipcode: { type: String },
+    interest: [{ type: String }],
     socialMediaHandles: {
       type: Map,
       of: String,
