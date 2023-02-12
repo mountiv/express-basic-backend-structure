@@ -14,7 +14,7 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(db);
-  console.log(`${process.env.APP_ENV} database connected`);
+  // console.log(`${process.env.APP_ENV} database connected`);
 }
 
 const app = express();
@@ -36,3 +36,5 @@ app.listen(port, () => {
     `${process.env.APP_ENV} server running on http://${host}:${port}`
   );
 });
+
+module.exports = app;
