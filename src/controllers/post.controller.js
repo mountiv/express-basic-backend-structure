@@ -91,7 +91,6 @@ votePost = async function (req, res) {
 
 searchPosts = async function (req, res) {
   try {
-    // new RegExp(req.query.search, "g")
     const posts = await Post.find({
       $text: { $search: req.query.search },
     })

@@ -5,9 +5,20 @@ const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema(
   {
-    email: { type: String, required: true, unique: true },
-    username: { type: String, required: true, unique: true },
-    name: { firstname: { type: String }, lastname: { type: String } },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    name: {
+      firstname: { type: String },
+      lastname: { type: String },
+    },
     titile: { type: String },
     profile: { type: String },
     address: {
@@ -24,8 +35,18 @@ const UserSchema = new Schema(
       type: Map,
       of: String,
     },
-    securityQueries: { type: Map, of: String },
-    password: { type: String, required: true },
+    securityQueries: {
+      type: Map,
+      of: String,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isAllowed: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

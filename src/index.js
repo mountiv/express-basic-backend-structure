@@ -2,16 +2,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const { DEV_DBPATH, TEST_DBPATH } = require("./config/db.config");
+const config = require("./config/db.config");
 const host = process.env.APP_HOST;
 const port = process.env.APP_PORT;
-const db = process.env.APP_ENV == "dev" ? DEV_DBPATH : TEST_DBPATH;
+const db =
+  process.env.APP_ENV == "development"
+    ? config.development.DB_PATH
+    : config.test.DB_PATH;
 
 main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(db);
-  console.log(`${process.env.APP_ENV}db connected`);
+  console.log(`${process.env.APP_ENV} database connected`);
 }
 
 const app = express();
