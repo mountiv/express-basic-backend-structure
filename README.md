@@ -1,46 +1,60 @@
 # Basic Backend Structure using Express, MongoDB, Node.js
 
-## Guide
+This project aimed to build simple blog website backend using Node.js and MongoDB.
+Take care in your package.json to make sure this project can run successfully on your Node.js and MongoDB versions.
 
 ### Basic structure of this project
 
 ```
 project
-|__ node_modules
-|__ src
-|   |__ config
-|   |   |__ db.config.js
-|   |__ controllers
-|   |   |__ auth.controller.js
-|   |   |__ user.controller.js
-|   |   |__ post.controller.js
-|   |__ middleware
-|   |   |__ auth.middleware.js
-|   |__ models
-|   |   |__ index.js
-|   |   |__ user.model.js
-|   |   |__ post.model.js
-|   |__ routes
-|   |   |__ routes.js
-|   |   |__ auth.router.js
-|   |   |__ user.router.js
-|   |   |__ post.router.js
-|   |__ index.js
-|__ test
-|   |__ user.js
-|   |__ post.js
-|__ .env
-|__ .gitignore
-|__ README.md
+|—— node_modules
+|
+|—— src
+|   |—— config
+|   |   |—— db.config.js
+|   |
+|   |—— controllers
+|   |   |—— auth.controller.js
+|   |   |—— user.controller.js
+|   |   |—— post.controller.js
+|   |
+|   |—— middleware
+|   |   |—— index.js
+|   |   |—— auth.middleware.js
+|   |
+|   |—— models
+|   |   |—— index.js
+|   |   |—— user.model.js
+|   |   |—— post.model.js
+|   |
+|   |—— routes
+|   |   |—— routes.js
+|   |   |—— auth.router.js
+|   |   |—— user.router.js
+|   |   |—— post.router.js
+|   |
+|   |—— index.js
+|   |
+|—— test
+|   |—— auth.js
+|   |—— user.js
+|   |—— post.js
+|
+|—— .env
+|—— .env.example
+|—— .gitignore
+|—— package-lock.json
+|—— package.json
+|—— README.md
 ```
 
-### Running development server
+### Type simple command in your terminal
 
-Execute these commands in terminal
+- starting development server with `npm run dev`
 
-`npm install` for dependencies, `npm run dev` to development server run
+- starting unit test with `npm run test`
 
-### APIs
+API Guide is [here](https://github.com/mountiv/express-basic-backend-structure-apis).
 
 ## Author
 

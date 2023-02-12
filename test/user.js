@@ -149,7 +149,7 @@ describe("#User", function () {
     });
   });
 
-  describe("#POST [/api/user/profile/allow], Block User", function () {
+  describe("#POST [/api/user/profile/allow], Allow User", function () {
     it("activate blocked/deactivated user", function (done) {
       chai
         .request(server)
