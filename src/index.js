@@ -4,7 +4,10 @@ require("dotenv").config();
 
 const config = require("./config/db.config");
 const host = process.env.APP_HOST;
-const port = process.env.APP_PORT;
+const port =
+  process.env.APP_ENV == "development"
+    ? process.env.APP_PORT
+    : Number(process.env.APP_PORT) + 1;
 const db =
   process.env.APP_ENV == "development"
     ? config.development.DB_PATH
@@ -28,7 +31,7 @@ app.get("/", function (req, res) {
 require("./routes/routes")(app);
 
 app.use("*", function (req, res) {
-  res.status(404).send("Can't found this page!");
+  res.status(404).send("Can't found this API!");
 });
 
 app.listen(port, () => {

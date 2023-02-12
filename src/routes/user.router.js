@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/user.controller");
 
-router.put("/profile/:id", function (req, res) {
+router.put("/profile", function (req, res) {
   controller.updateProfile(req, res);
 });
 
-router.post("/profile/password/:id", function (req, res) {
+router.post("/profile/password-reset", function (req, res) {
   controller.updatePassword(req, res);
 });
 

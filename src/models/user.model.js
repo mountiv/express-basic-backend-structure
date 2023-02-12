@@ -19,8 +19,8 @@ const UserSchema = new Schema(
       firstname: { type: String },
       lastname: { type: String },
     },
-    titile: { type: String },
-    profile: { type: String },
+    title: { type: String },
+    summary: { type: String },
     address: {
       street: { type: String },
       city: { type: String },
@@ -53,15 +53,22 @@ const UserSchema = new Schema(
 
 UserSchema.pre("save", function (next) {
   var user = this;
-  mongoose.models["User"].findOne(
-    { $or: [{ email: user.email }, { username: user.username }] },
-    function (err, ouser) {
-      if (ouser) {
-        const duplicateErr = new Error("Email or Username duplicated!");
-        next(duplicateErr);
-      }
-    }
-  );
+  /** This part is validating email and username duplication.
+   * When we reset the password, this part check the email and username duplication and always occurs duplication error.
+   * E11000 duplicate key error collection: blog_development.users index: email_1 dup key: { email: "testuser@example.com" }
+   * So that, I removed this part.
+   * When a user registers, input action frontend-side will call email and username duplication check apis and will not duplication.  */
+
+  // mongoose.models["User"].findOne(
+  //   { $or: [{ email: user.email }, { username: user.username }] },
+  //   function (err, ouser) {
+  //     if (ouser) {
+  //       const duplicateErr = new Error("Email or Username duplicated!");
+  //       next(duplicateErr);
+  //     }
+  //   }
+  // );
+
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
     if (err) return next(err);
     bcrypt.hash(user.password, salt, function (err, hash) {
