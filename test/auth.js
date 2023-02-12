@@ -17,7 +17,7 @@ describe("#Auth", function () {
   });
 
   describe("#POST [/api/auth/check/email], Check Email for Signup", function () {
-    it("the email is available.", function (done) {
+    it("email availability", function (done) {
       chai
         .request(server)
         .post("/api/auth/check/email")
@@ -28,6 +28,8 @@ describe("#Auth", function () {
           if (err) done(err);
           else {
             res.should.have.status(200);
+            res.body.should.be.a("object");
+            res.body.should.have.property("msg").equal("available email");
             done();
           }
         });
@@ -35,7 +37,7 @@ describe("#Auth", function () {
   });
 
   describe("#POST [/api/auth/check/username], Check Username for Signup", function () {
-    it("the username is available.", function (done) {
+    it("username availability", function (done) {
       chai
         .request(server)
         .post("/api/auth/check/username")
@@ -46,6 +48,8 @@ describe("#Auth", function () {
           if (err) done(err);
           else {
             res.should.have.status(200);
+            res.body.should.be.a("object");
+            res.body.should.have.property("msg").equal("available username");
             done();
           }
         });
@@ -66,7 +70,7 @@ describe("#Auth", function () {
           },
           securityQueries: {
             "Where ware you born?": "Earth",
-            "What is your favorite pet name?": "Zemma",
+            "What is this favorite pet name?": "Zemma",
           },
           password: "testpassword",
         })
@@ -74,6 +78,10 @@ describe("#Auth", function () {
           if (err) done(err);
           else {
             res.should.have.status(200);
+            res.body.should.be.a("object");
+            res.body.should.have
+              .property("msg")
+              .equal("your account created successfully");
             done();
           }
         });
@@ -94,7 +102,7 @@ describe("#Auth", function () {
           },
           securityQueries: {
             "Where ware you born?": "Earth",
-            "What is your favorite pet name?": "Zemma",
+            "What is this favorite pet name?": "Zemma",
           },
           password: "testpassword",
         })
@@ -112,6 +120,8 @@ describe("#Auth", function () {
                 if (err) done(err);
                 else {
                   res.should.have.status(200);
+                  res.body.should.be.a("object");
+                  res.body.should.have.property("token");
                   done();
                 }
               });
