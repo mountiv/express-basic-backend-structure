@@ -10,15 +10,15 @@ router.post("/profile/password-reset", function (req, res) {
   controller.updatePassword(req, res);
 });
 
-router.post("/profile/block/:id", function (req, res) {
+router.post("/profile/block", function (req, res) {
   controller.blockUser(req, res);
 });
 
-router.post("/profile/allow/:id", function (req, res) {
+router.post("/profile/allow", function (req, res) {
   controller.allowUser(req, res);
 });
 
-router.delete("/profile/:id", function (req, res) {
+router.delete("/profile", function (req, res) {
   controller.deleteUser(req, res);
 });
 

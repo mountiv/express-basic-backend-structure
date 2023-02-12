@@ -6,7 +6,7 @@ updateProfile = async function (req, res) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     const username = jwt_decode(token).username;
-    console.log(username);
+
     User.findOne({ username: username }).then((user) => {
       if (!user) {
         res.status(500).json({ msg: "user not found" });
@@ -16,7 +16,6 @@ updateProfile = async function (req, res) {
           .status(500)
           .json({ msg: "can't update your profile, you are blocked!" });
       } else {
-        console.log(user);
         user.name.firstname = req.body.firstname;
         user.name.lastname = req.body.lastname;
         user.title = req.body.title;
@@ -34,7 +33,7 @@ updateProfile = async function (req, res) {
         user.save();
       }
     });
-    res.status(200).json({ msg: "profile updated" });
+    res.status(200).json({ msg: "profile updated successfully" });
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -60,7 +59,7 @@ updatePassword = async function (req, res) {
 blockUser = async function (req, res) {
   try {
     const result = await User.updateOne(
-      { _id: req.params.id },
+      { username: req.body.username },
       { isAllowed: false }
     );
     res.status(200).json({ msg: "user blocked!" });
@@ -72,7 +71,7 @@ blockUser = async function (req, res) {
 allowUser = async function (req, res) {
   try {
     const result = await User.updateOne(
-      { _id: req.params.id },
+      { username: req.body.username },
       { isAllowed: true }
     );
     res.status(200).json({ msg: "user activated!" });
@@ -83,12 +82,16 @@ allowUser = async function (req, res) {
 
 deleteUser = async function (req, res) {
   try {
-    if (!User.findById(req.params.id).isAllowed) {
-      const result = await User.deleteOne({ _id: req.params.id });
-      res.status(200).send(result);
-    } else {
-      res.status(500).json({ msg: "can't delete activatide user!" });
-    }
+    User.findOne({ username: req.body.username }).then((user) => {
+      if (!user) {
+        res.status(500).json({ msg: "user not found" });
+      }
+      if (user.isAllowed) {
+        res.status(500).json({ msg: "can not delete activated user!" });
+      }
+    });
+    const result = await User.deleteOne({ username: req.body.username });
+    res.status(200).send(result);
   } catch (err) {
     res.status(500).send(err.message);
   }
