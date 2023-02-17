@@ -34,7 +34,7 @@ project
 |   |   |—— post.router.js
 |   |
 |   |—— index.js
-|   |
+|
 |—— test
 |   |—— auth.js
 |   |—— user.js
