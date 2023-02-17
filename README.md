@@ -52,7 +52,11 @@ project
 
 - starting development server with `npm run dev`
 
+![rundevserver](https://user-images.githubusercontent.com/121834775/218337207-2b704f3e-8fa7-48bc-b879-b4f758dd7bed.png)
+
 - starting unit test with `npm run test`
+
+![rununittest](https://user-images.githubusercontent.com/121834775/218337229-89ff1a1b-8100-4315-888e-7c2d3e125a42.png)
 
 API Guide is [here](https://github.com/mountiv/express-basic-backend-structure-apis).
 
