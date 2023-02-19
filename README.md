@@ -60,6 +60,14 @@ project
 
 API Guide is [here](https://github.com/mountiv/express-basic-backend-structure-apis).
 
+### Versions
+
+- OS: Windows 10
+
+- Node.js: node-v18.13.0-x64.msi
+
+- MongoDB: mongodb-windows-x86_64-6.0.4-signed.msi
+
 ## Author
 
 © me
